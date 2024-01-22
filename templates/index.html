@@ -64,14 +64,16 @@
        
 <div class="proj">
     <div class="pram">
-        {% for post in posts %} 
-    <div class ="child"><p class="Z">{{ post['title'] }}
-        <p>{{ post['created'] }}
-        <p>{{ post['content'] }}
-        <p class="Z">{{ post['autor'] }}
- </div>
- {% endfor %}
- </div>
+        {% for post in menu %} 
+        {% if post.statuss == 'опубликовано' %}
+          <div class ="child"><p class="Z">{{ post.title }}
+              <p>{{ post.created }}
+              <p>{{ post.content }}
+              <p class="Z">{{ post['autor'] }}
+          </div>
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>
  
  <div class="about" >
