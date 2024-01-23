@@ -10,7 +10,21 @@ class DataBase:
             self.__cur.execute(sql)
             res = self.__cur.fetchall()
             if res: 
+                
                 return res
+        except:
+            #print ('Ошибка чтения из бд')
+            return False
+        return []
+    
+    def getJSON(self):
+        sql = '''SELECT * FROM posts'''
+        try:
+            self.__cur.execute(sql)
+            res = self.__cur.fetchall()
+            if res: 
+                blocks_list = [dict(ix) for ix in res]
+                return blocks_list
         except:
             #print ('Ошибка чтения из бд')
             return False
@@ -19,14 +33,14 @@ class DataBase:
     def addPost(self, title, content):
         try:
             tm = math.floor(time.time())
-            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?)", (tm, title, content, 'черновик'))
+            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?)", (tm, title, content, 'draft'))
             self.__db.commit()
         except sqlite3.Error as e:
             print("Ошибка добавления статьи в БД" + str(e))
             return False
         return True
     
-    def updateStatus(self, statuss, pk):
+    def updateStatus(self, statuss, id):
         try:
             self.__cur.execute(f"UPDATE posts SET statuss=? WHERE id=?", (statuss, id))
             self.__db.commit()

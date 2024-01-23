@@ -74,14 +74,14 @@ def updateStatus():
     db = get_db()
     dbase = DataBase(db)
     if request.method == "POST":
-        res = dbase.updateStatus(request.form['statuss'])
+        res = dbase.updateStatus(request.form['statuss'], request.form['id'])
         if not res:
             flash('Ошибка обновления статуса', category= 'error')
         else:
             flash('Статус успешно обновлен', category='success')
     else:
         flash('Ошибка обновления статуса', category='error')
-    return render_template('admin.html', menu=dbase.getMenu())
+    return render_template('admin.html', menu=dbase.getJSON())
 
 
 @app.route("/post/<int:id_post>")

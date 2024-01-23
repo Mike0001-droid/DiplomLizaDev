@@ -65,7 +65,7 @@
 <div class="proj">
     <div class="pram">
         {% for post in menu %} 
-        {% if post.statuss == 'опубликовано' %}
+        {% if post["status"] == 'опубликовано' %}
           <div class ="child"><p class="Z">{{ post.title }}
               <p>{{ post.created }}
               <p>{{ post.content }}

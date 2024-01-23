@@ -8,8 +8,9 @@
 <div class="tab-content" id="v-pills-tabContent"></div>
     {% for post in menu %} 
         <form action="{{url_for('updateStatus')}}" method="post" class="form-contact">
-            <h3>Название статуса: <input type="text" name="statuss" value="{{ post.statuss }}"></h3>
-            <input type="hidden" name="id" value="{{ post.id }}">
+            <h3>Текущий статус: <input type="text" name="statuss" value="{{ post['statuss'] }}"></h3>
+            <input type="hidden" name="id" value="{{ post['id'] }}">
+            
             <p><input type="submit" value="Изменить"/>
         </form>
     {% endfor %}
